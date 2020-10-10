@@ -16,6 +16,15 @@ E-commerce realizado en equipo como parte de instancia evaluativa en [Soy Henry]
 * **Bootstrap**
 * **Material-ui**
 
+### Instalación 🔧
+```
+git clone https://github.com/FernandoChecchi/E-Commerce.git
+npm install >> E-Commerce/api/
+npm start >> E-Commerce/api/
+npm install >> E-Commerce/client/
+npm start >> E-Commerce/client/
+```
+
 ## Contributors 🚀
 
 * [Lucca Lipisky](https://github.com/luccalipisky)
