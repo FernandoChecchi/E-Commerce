@@ -15,7 +15,6 @@ E-commerce realizado en equipo como parte de instancia evaluativa en [Soy Henry]
 * **Google API**
 * **Bootstrap**
 * **Material-ui**
-* **VS Code**
 
 ## Contributors 🚀
 
