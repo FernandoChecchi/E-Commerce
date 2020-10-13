@@ -26,7 +26,7 @@ export default function Review(props) {
     
     function submit(e, input, beer, id){
         e.preventDefault();
-        const url = `http://localhost:3000/beers/${beer}/review/${id}`;
+        const url = `http://104.131.126.10:3000/beers/${beer}/review/${id}`;
         return axios.put(url, input)
             .then(res => res.data)
             .then((data) => {

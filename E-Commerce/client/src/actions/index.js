@@ -36,12 +36,16 @@ export const RESET_PASSWORD = 'RESET_PASSWORD';
 export const VIEW_REVIEW = 'VIEW_REVIEW'; //VER REVIEW
 export const DELETE_REVIEW = 'DELETE_REVIEW'; 
 
-axios.defaults.withCredentials = true;
+const url = "http://104.131.126.10:3000/";
+const instance = axios.create({
+  withCredentials: true,
+  baseURL: url,
+});
 
 
 export function getBeers() {
   return function (dispatch) {
-    axios.get('http://localhost:3000/beers')
+    instance.get('beers')
       .then((res) => res.data)
       .then(data => {
         dispatch({ type: GET_BEERS, payload: data });
@@ -50,7 +54,7 @@ export function getBeers() {
   }
 } export function getBeer(id) {
   return function (dispatch) {
-    axios.get(`http://localhost:3000/beers/product/${id}`)
+    instance.get(`beers/product/${id}`)
       .then((res) => res.data)
       .then(data => {
         dispatch({ type: GET_BEER, payload: data });
@@ -59,7 +63,7 @@ export function getBeers() {
   }
 }export function getStyles() {
   return function (dispatch) {
-    axios.get('http://localhost:3000/styles')
+    instance.get('styles')
       .then((res) => res.data)
       .then(data => {
         dispatch({ type: GET_STYLES, payload: data });
@@ -68,7 +72,7 @@ export function getBeers() {
   }
 } export function getOrdersUsers() {
   return function (dispatch) {
-    axios.get('http://localhost:3000/orders/?status=closed')
+    instance.get('orders/?status=closed')
       .then((res) => res.data)
       .then(data => {
         dispatch({ type: GET_ORDERSUSERS, payload: data });
@@ -79,7 +83,7 @@ export function getBeers() {
 
 export function getOrdersDetail(id) {
   return function (dispatch) {
-    axios.get(`http://localhost:3000/orders/${id}`)
+    instance.get(`orders/${id}`)
       .then((res) => res.data)
       .then(data => {
         dispatch({ type: GET_ORDERSDETAIL, payload: data });
@@ -91,8 +95,8 @@ export function getOrdersDetail(id) {
 export function closeOrder(input, id) {
   console.log("aaaaaaaaccccccction",input, id)
   return function (dispatch) {
-    const url = `http://localhost:3000/orders/${id}/close`;
-    return axios.put(url, input)
+    const url = `orders/${id}/close`;
+    return instance.put(url, input)
       .then(res => res.data)
       .then(data => {
         dispatch({ type: CLOSE_ORDER, payload: data })
@@ -104,7 +108,7 @@ export function closeOrder(input, id) {
 
 export function getCartUser(id) {
   return function (dispatch) {
-    axios.get(`http://localhost:3000/users/${id}/cart`)
+    instance.get(`users/${id}/cart`)
       .then((res) => res.data)
       .then(data => {
         dispatch({ type: GET_CARTUSER, payload: data });
@@ -115,8 +119,8 @@ export function getCartUser(id) {
 
 export function addToCart(id, order) {
   return function (dispatch) {
-    const url = `http://localhost:3000/users/${id}/cart`;
-    return axios.post(url, order)
+    const url = `users/${id}/cart`;
+    return instance.post(url, order)
       .then(res => res.data)
       .then(data => {
         return dispatch({ type: ADD_TO_CART, payload: data })
@@ -132,8 +136,8 @@ export function addToCart(id, order) {
 
 export function deleteFromCart(id, beerId) { 
   return function (dispatch) {
-    const url = `http://localhost:3000/users/${id}/cart/${beerId}`;
-    return axios.delete(url)
+    const url = `users/${id}/cart/${beerId}`;
+    return instance.delete(url)
     .then(res => res.data)
     .then(data => {
       dispatch({ type: DELETE_FROM_CART, payload: beerId })
@@ -144,8 +148,8 @@ export function deleteFromCart(id, beerId) {
 
 export function updateQuantity(id, input) {
   return function (dispatch) {
-    const url = `http://localhost:3000/users/${id}/cart`;
-    return axios.put(url, input)
+    const url = `users/${id}/cart`;
+    return instance.put(url, input)
       .then(res => res.data)
       .then(data => {
         dispatch({ type: UPDATE_QUANTITY, payload: input })
@@ -156,7 +160,7 @@ export function updateQuantity(id, input) {
 
 export function filterStyles(styleName) {
   return function (dispatch) {
-    axios.get(`http://localhost:3000/styles/${styleName}`)
+    instance.get(`styles/${styleName}`)
       .then((res) => res.data)
       .then(json => {
         dispatch({ type: FILTER_STYLES, payload: json });
@@ -165,7 +169,7 @@ export function filterStyles(styleName) {
   }
 } export function searchBeer(beer) {
   return function (dispatch) {
-    axios.get(`http://localhost:3000/beers/search/?query=${beer}`)
+    instance.get(`beers/search/?query=${beer}`)
       .then(response => response.data)
       .then(data => {
         dispatch({ type: SEARCH_BEER, payload: data })
@@ -174,8 +178,8 @@ export function filterStyles(styleName) {
   }
 } export function createBeer(input) {
   return function (dispatch) {
-    const url = "http://localhost:3000/beers";
-    return axios.post(url, input)
+    const url = "beers";
+    return instance.post(url, input)
       .then(res => res.data)
       .then(data => {
         dispatch({ type: CREATE_BEER, payload: data })
@@ -185,8 +189,8 @@ export function filterStyles(styleName) {
   }
 } export function createStyle(input) {
   return function (dispatch) {
-    const url = "http://localhost:3000/beers/style";
-    return axios.post(url, input)
+    const url = "beers/style";
+    return instance.post(url, input)
       .then(res => res.data)
       .then(data => {
         dispatch({ type: CREATE_STYLE, payload: data })
@@ -196,22 +200,22 @@ export function filterStyles(styleName) {
   }
 } export function deleteBeer(input) {
   return function (dispatch) {
-    const url = `http://localhost:3000/beers/${input.name}`;
-    return axios.delete(url)
+    const url = `beers/${input.name}`;
+    return instance.delete(url)
       .then(() => alert('Se borro la Cerveza'))
       .catch(error => alert(error, 'Algo salió mal al borrar la cerveza'))
   }
 } export function deleteStyle(input) {
   return function (dispatch) {
-    const url = `http://localhost:3000/beers/style/${input.name}`;
-    return axios.delete(url)
+    const url = `beers/style/${input.name}`;
+    return instance.delete(url)
       .then(() => alert('Se borro el Estilo'))
       .catch(error => alert(error, 'Algo salió mal al borrar el style'))
   }
 } export function updateProduct(input, beer) {
   return function (dispatch) {
-    const url = `http://localhost:3000/beers/${beer}`;
-    return axios.put(url, input)
+    const url = `beers/${beer}`;
+    return instance.put(url, input)
       .then(res => res.data)
       .then(data => {
         dispatch({ type: UPDATE_BEER, payload: data })
@@ -221,8 +225,8 @@ export function filterStyles(styleName) {
   }
 } export function updateCategory(input, style) {
   return function (dispatch) {
-    const url = `http://localhost:3000/beers/style/${style}`;
-    return axios.put(url, input)
+    const url = `beers/style/${style}`;
+    return instance.put(url, input)
       .then(res => res.data)
       .then(data => {
         dispatch({ type: UPDATE_STYLE, payload: data })
@@ -234,7 +238,7 @@ export function filterStyles(styleName) {
 // user
 export function listarUsers() {
   return function (dispatch) {
-    axios.get(`http://localhost:3000/users`)
+    instance.get(`users`)
       .then(res => res.data)
       .then(data => {
         dispatch({ type: LIST_USERS, payload: data })
@@ -244,9 +248,9 @@ export function listarUsers() {
 }
 export function createUsers(input) {
   return function (dispatch) {
-    const url = "http://localhost:3000/users";
+    const url = "users";
 
-    return axios.post(url, input)
+    return instance.post(url, input)
       .then(res => res.data)
       .then(data => {
         dispatch({ type: CREATE_USERS, payload: data })
@@ -259,8 +263,8 @@ export function createUsers(input) {
 
 export function userAdmin(id) {
   return function (dispatch) {
-    const url = `http://localhost:3000/users/promote/${id}`;
-    return axios.put(url)
+    const url = `users/promote/${id}`;
+    return instance.put(url)
       .then(res => res.data)
       .then(data => {
         dispatch({ type: ADMIN_USER, payload: data })
@@ -272,8 +276,8 @@ export function userAdmin(id) {
 
 export function logoutUser() {
   return function (dispatch) {
-    const url = "http://localhost:3000/users/logout";
-    return axios.post(url)
+    const url = "users/logout";
+    return instance.post(url)
       .then(() => alert('La sesión se ha cerrado'))
       .catch(error => alert(error, 'algo salio muy mal'))
   }
@@ -281,8 +285,8 @@ export function logoutUser() {
 
 export function loginUser(input) {
   return function (dispatch) {
-    const url = "http://localhost:3000/users/login";
-    return axios.post(url, input)
+    const url = "users/login";
+    return instance.post(url, input)
     .then(res => res.data)
       .then(data => {
          dispatch({ type: LOGIN_USER, payload: data })
@@ -294,7 +298,7 @@ export function loginUser(input) {
 
 export function currentUser() {
   return function (dispatch) {
-     axios.get('http://localhost:3000/users/me')
+     instance.get('users/me')
       .then((res) => res.data)
       .then(data => {
         dispatch({ type: CURRENT_USER, payload: data });
@@ -304,7 +308,7 @@ export function currentUser() {
 }
 export function listUser() {
   return function (dispatch) {
-     axios.get('http://localhost:3000/users')
+     instance.get('users')
       .then((res) => res.data)
       .then(data => {
         dispatch({ type: LIST_USER, payload: data });
@@ -315,7 +319,7 @@ export function listUser() {
 // trae 1 usuario
 export function getuser(payload) {
   return function (dispatch) {
-    return axios.get(`http://localhost:3001/users/${payload}`)
+    return instance.get(`users/${payload}`)
       .then(response => {
         dispatch({ type: GET_ONE_USER, payload: response.data });
       })
@@ -326,7 +330,7 @@ export function getuser(payload) {
 }
 export function UpgradeUser(payload) {
   return function (dispatch) {
-     axios.put(`http://localhost:3000/users/promote/${payload}`)
+     instance.put(`users/promote/${payload}`)
       .then((res) => res.data)
       .then(data => {
         dispatch({ type: UPGRADE_USER, payload: data });
@@ -339,8 +343,8 @@ export function UpgradeUser(payload) {
 
 export function getReviews(id) {
   return function (dispatch) {
-    const url = `http://localhost:3000/beers/${id}/review`;
-    return axios.get(url)
+    const url = `beers/${id}/review`;
+    return instance.get(url)
       .then(res => res.data)
       .then(data => {
         dispatch({ type: VIEW_REVIEW, payload: data })
@@ -350,8 +354,8 @@ export function getReviews(id) {
 
 export function deleteReview(beer, id) {
   return function (dispatch) {
-    const url = `http://localhost:3000/beers/${beer}/review/${id}`;
-    return axios.delete(url)
+    const url = `beers/${beer}/review/${id}`;
+    return instance.delete(url)
         .then(data => {
           dispatch({ type:DELETE_REVIEW , payload: id });
         })
@@ -362,8 +366,8 @@ export function deleteReview(beer, id) {
 
 export function ResetPassword(id, input) {
   return function (dispatch) {
-    const url = `http://localhost:3000/users/${id}/passwordReset`;
-    return axios.put(url, input)
+    const url = `users/${id}/passwordReset`;
+    return instance.put(url, input)
       .then(res => res.data)
       .then(data => {
         dispatch({ type: RESET_PASSWORD, payload: data })

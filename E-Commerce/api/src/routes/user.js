@@ -189,7 +189,7 @@ server.get('/google/callback',
   passport.authenticate('google', { failureRedirect: '/failed' }),
   function(req, res) {
     // Successful authentication, redirect home.
-    res.redirect('http://localhost:3001/cart');
+    res.redirect('http://104.131.126.10:3001/cart');
   });
 
 

@@ -61,7 +61,7 @@ const Checkout = ({total}) => {
     } 
 
     function sendEmail(input) {
-    const url = `http://localhost:3000/users/order-mail`;
+    const url = `http://104.131.126.10:3000/users/order-mail`;
     return axios.post(url, input)
       .catch(error => alert(error, 'Algo salió mal al enviar el email'))
     }

@@ -28,7 +28,7 @@ const Update = () => {
   const dispatch = useDispatch()
 
   function previousValues(e){
-  axios.get(`http://localhost:3000/beers/${e}`)
+  axios.get(`http://104.131.126.10:3000/beers/${e}`)
       .then(res => {
         const c = res.data;
         setBeer(e)

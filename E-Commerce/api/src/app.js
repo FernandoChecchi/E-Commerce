@@ -36,7 +36,7 @@ passport.use(new Strategy(
 passport.use(new GoogleStrategy({
   clientID: "131133134087-jenbs9aek3s720nn0sh4arbvjiofulei.apps.googleusercontent.com",
   clientSecret: "549_TZ3GbBCRJI-KKH2Q123O",
-  callbackURL: "http://localhost:3000/users/google/callback"
+  callbackURL: "http://104.131.126.10:3000/users/google/callback"
 },
   function(accessToken, refreshToken, profile, done) {
     console.log(profile, 'asdaddasdadas');
@@ -116,7 +116,7 @@ server.use(morgan('dev'));
 server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 server.use(bodyParser.json({ limit: '50mb' }));
 server.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:3001'); // update to match the domain you will make the request from
+  res.header('Access-Control-Allow-Origin', 'http://104.131.126.10:3001'); // update to match the domain you will make the request from
   res.header('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');

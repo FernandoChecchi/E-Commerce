@@ -45,7 +45,7 @@ const Form = () => {
               
                 <div className="boton">
                     <input className="submit" type="submit" value="INICIAR SESIÓN" />
-                    <a href = "http://localhost:3000/users/google">
+                    <a href = "http://104.131.126.10:3000/users/google">
                     <div className="google-btn">
                         <div className="google-icon-wrapper">
                             <img className="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" />

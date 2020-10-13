@@ -35,7 +35,7 @@ const handleInputChange = function (e) {
 
 function submit(e, input, beer){
     e.preventDefault();
-    const url = `http://localhost:3000/beers/${beer}/review`;
+    const url = `http://104.131.126.10:3000/beers/${beer}/review`;
     return axios.post(url, input)
         .then(res => res.data)
         .then((data) => {

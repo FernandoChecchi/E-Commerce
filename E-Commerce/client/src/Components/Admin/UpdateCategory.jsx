@@ -25,7 +25,7 @@ const UpdateCategory = () => {
   },[getStyles])
 
   function previousValues(e){
-    axios.get(`http://localhost:3000/styles/?styleName=${e}`)
+    axios.get(`http://104.131.126.10:3000/styles/?styleName=${e}`)
         .then(res => {
           const s = res.data;
           setStyle(e)
