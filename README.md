@@ -1,5 +1,6 @@
 <p align='left'>
-    <img src='https://i.postimg.cc/qvqCzt3R/logosixbeer.png' </img>  <img src='https://seeklogo.com/images/N/nodejs-logo-FBE122E377-seeklogo.com.png' width="5%" </img>
+    <img src='https://i.postimg.cc/qvqCzt3R/logosixbeer.png' </img>  
+    <img src='https://user-images.githubusercontent.com/65245824/95817516-0a599d80-0cf8-11eb-9eee-d9bdba249a6d.png' </img>  
 </p>
 
 # E-Commerce
@@ -28,7 +29,7 @@ npm start >> E-Commerce/client/
 ## Contributors 🚀
 
 * [Lucca Lipisky](https://github.com/luccalipisky)
-* [Fernando Checchi](https://github.com/FernandoChecchi)
+* [Agustin Rojas](https://github.com/AgusJordi)
 * [Edgar Palma](https://github.com/Edgar9408)
 
 Objetivos a lograr descriptos en el readme dentro de la carpeta. Calificación final: 8/10.
